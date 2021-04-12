@@ -21,3 +21,34 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+*~
+*.sw[mnpcod]
+*.log
+*.tmp
+*.tmp.*
+log.txt
+yarn.lock
+*.sublime-project
+*.sublime-workspace
+.vscode/
+*.iml
+
+
+.idea/
+www/
+www./
+
+
+release
+
+# Firebase
+.firebase
+.firebaserc
+firebase.json
+
+# IntelliJ
+*.iml
+
+
