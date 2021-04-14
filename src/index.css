@@ -13,8 +13,10 @@ code {
 }
 
 @font-face {
-  font-family: 'horror';
-  font-style: normal;
+  font-family: 'dhf_story_brush_slantedRg';
+  src: url('./fonts/horror-webfont.woff2') format('woff2'),
+  url('./fonts/horror-webfont.woff') format('woff');
   font-weight: normal;
-  src: local('horror'), url(./fonts/horror.ttf) format("truetype ");
+  font-style: normal;
+
 }
