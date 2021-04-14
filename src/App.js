@@ -10,6 +10,12 @@ import googleLogo from './Assets/google_logo.svg'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+import SendIcon from '@material-ui/icons/Send';
+import IconButton from '@material-ui/core/IconButton';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { makeStyles } from '@material-ui/core/styles';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBRa0Uy5coEfOLH8OESi6JhTwQt63HkSD4",
@@ -27,7 +33,6 @@ const firestore = firebase.firestore();
 
 function App() {
   const [user] = useAuthState(auth);
-  // const [] = useCollectionData();
 
   return (
     <div className="App">
@@ -40,11 +45,6 @@ function App() {
 
 export default App;
 
-export function SignOut () {
-  return auth.currentUser && (
-    <button onClick={() => auth.signOut()}>Sign Out</button>
-  )
-}
 
 export function SignIn () {
 
@@ -68,7 +68,20 @@ export function SignIn () {
   )
 }
 
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
+  appBar: {
+    background: 'rgb(58, 58, 58)'
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 export function Chatroom () {
+  const classes = useStyles();
   const messageRef = firestore.collection("messages");
   const query = messageRef.orderBy('createdAt').limit(25);
   const [messages] = useCollectionData(query, {idField: 'id'});
@@ -92,15 +105,32 @@ export function Chatroom () {
 
   return (
     <React.Fragment>
-
+      <div className={classes.root}>
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Messages
+            </Typography>
+            {
+              auth.currentUser && (
+                <IconButton edge="end" onClick={() => auth.signOut()} color="inherit" aria-label="menu">
+                  <ExitToAppIcon />
+                </IconButton>
+              )
+            }
+          </Toolbar>
+        </AppBar>
+      </div>
       <main>
-        <SignOut/>
         {messages && messages.map(msg => <ChatMessage message={msg} key={msg.id} />)}
         <div ref={bottomPage}></div>
       </main>
-      <form onSubmit={sendMessage}>
+      <form>
         <input type="text" value={formValue} onChange={e => setFormValue(e.target.value) } />
-        <button type="submit">Send</button>
+        <IconButton color="primary"
+                    onClick={sendMessage} aria-label="send">
+          <SendIcon style={{fontSize: '1.8rem'}} />
+        </IconButton>
       </form>
     </React.Fragment>
   )
@@ -109,11 +139,11 @@ export function Chatroom () {
 export function ChatMessage ({message}) {
   const {text, uid, photoURL} = message;
 
-  const messageClass = uid === auth.currentUser.id ? 'sent': 'received';
+  const messageClass = uid === auth.currentUser.uid ? 'sent': 'received';
   return (
     <React.Fragment>
       <div className={`message ${messageClass}`}>
-        <img src={photoURL}/>
+        <img src={photoURL} alt={uid}/>
         <p>{text}</p>
       </div>
 
