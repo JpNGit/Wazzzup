@@ -5,7 +5,11 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {useCollectionData} from 'react-firebase-hooks/firestore'
-// import {useAuthState}
+import logo from './Assets/wazzzup_background.png'
+import googleLogo from './Assets/google_logo.svg'
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBRa0Uy5coEfOLH8OESi6JhTwQt63HkSD4",
@@ -49,7 +53,19 @@ export function SignIn () {
     auth.signInWithPopup(provider)
   }
 
-  return (<button onClick={signInWithGoogle}>Sign in with Google</button>)
+  return (
+    <React.Fragment>
+      <img src={logo} alt="logo" className="logo" />
+      <Typography variant="h2" className="heading" gutterBottom>
+        WazzzUp!
+      </Typography>
+      <Box justifyContent="center" display="flex" mt={2}>
+        <Button variant="contained" className="loginBtn"
+                startIcon={<img src={googleLogo} alt="google" />}
+                onClick={signInWithGoogle}>Sign In with Google</Button>
+      </Box>
+    </React.Fragment>
+  )
 }
 
 export function Chatroom () {

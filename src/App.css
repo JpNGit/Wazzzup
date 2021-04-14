@@ -25,6 +25,21 @@ body {
   box-sizing: border-box;
 }
 
+.logo {
+  height: 250px;
+  width:280px;
+  margin: 2rem auto;
+}
+
+.loginBtn {
+  width: 40%;
+  background-color: #eeeeee !important;
+}
+
+.heading {
+  color: white;
+}
+
 .App section {
   display: flex;
   flex-direction: column;
@@ -83,15 +98,15 @@ input {
 }
 
 button {
-  background-color: #282c34; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  font-size: 1.25rem;
+  /*background-color: #282c34; !* Green *!*/
+  /*border: none;*/
+  /*color: white;*/
+  /*padding: 15px 32px;*/
+  /*text-align: center;*/
+  /*text-decoration: none;*/
+  /*display: inline-block;*/
+  /*cursor: pointer;*/
+  /*font-size: 1.25rem;*/
 }
 
 button:disabled {
