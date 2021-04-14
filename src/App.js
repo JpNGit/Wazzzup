@@ -9,12 +9,12 @@ import {SignIn} from './Components/SignIn';
 import {AuthContextProvider} from './Shared/Contexts/AuthContext';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBRa0Uy5coEfOLH8OESi6JhTwQt63HkSD4",
-  authDomain: "wazzzup-2523d.firebaseapp.com",
-  projectId: "wazzzup-2523d",
-  storageBucket: "wazzzup-2523d.appspot.com",
-  messagingSenderId: "886263508835",
-  appId: "1:886263508835:web:82e94a900a4cc655c32d56"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_API_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_API_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_API_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_API_APP_ID
 };
 
 firebase.initializeApp(firebaseConfig)
