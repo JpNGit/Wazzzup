@@ -21,6 +21,9 @@ body {
 }
 
 .heading {
+  font-family: 'horror' !important;
+  /*font-style: normal;*/
+  /*font-weight: normal;*/
   color: white;
 }
 
